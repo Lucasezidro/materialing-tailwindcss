@@ -13,11 +13,11 @@ export function Profile() {
         height={40}
       />
 
-      <div className="flex flex-1 flex-col truncate">
-        <span className="text-sm font-semibold text-zinc-800">
+      <div className="flex flex-1 flex-col truncate ">
+        <span className="text-sm font-semibold text-zinc-800 dark:text-zinc-100">
           Lucas Ezidro
         </span>
-        <span className="text-sm text-zinc-500 truncate">
+        <span className="text-sm text-zinc-500 truncate dark:text-zinc-400">
           lucasezidro7@gmail.com
         </span>
       </div>
