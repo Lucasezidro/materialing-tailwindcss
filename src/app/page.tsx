@@ -2,10 +2,10 @@ import * as Input from '@/components/form/input'
 import * as FileInput from '@/components/form/file-input'
 import { SettingTabs } from '@/components/settings-tabs'
 import { Bold, Italic, Link, List, ListOrdered, Mail } from 'lucide-react'
-import { Select } from '@/components/form/select'
-import { SelectItem } from '@/components/form/select/select-item'
+import * as Select from '@/components/form/select'
 import { Textarea } from '@/components/form/textarea'
 import { Button } from '@/components/Button'
+import { CountrySelect } from './country-select'
 
 export default function Home() {
   return (
@@ -116,79 +116,83 @@ export default function Home() {
             </Input.Root>
           </div>
 
-          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
-            <label
-              htmlFor="country"
-              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
-            >
+          <label className="grid gap-3 pt-5 lg:grid-cols-form">
+            <span className="flex flex-col text-sm font-medium leading-relaxed text-zinc-700 dark:text-zinc-100">
               Country
-            </label>
-            <Select placeholder="Select a country...">
-              <SelectItem value="br" text="Brazil" />
-              <SelectItem value="us" text="United States" />
-            </Select>
-          </div>
+            </span>
 
-          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
-            <label
-              htmlFor="timezone"
-              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
-            >
+            <CountrySelect />
+          </label>
+
+          <label className="grid gap-3 pt-5 lg:grid-cols-form">
+            <span className="flex flex-col text-sm font-medium leading-relaxed text-zinc-700 dark:text-zinc-100">
               Timezone
-            </label>
-            <Select placeholder="Select a timezone...">
-              <SelectItem
-                value="utc8"
-                text="Pacific Standard Time (UTC-08:00)"
-              />
-              <SelectItem value="utc3" text="America São Paulo (UTC-03:00)" />
-            </Select>
-          </div>
+            </span>
+            <Select.Root name="timezone">
+              <Select.Trigger>
+                <Select.Value placeholder="Select your timezone..." />
+              </Select.Trigger>
 
-          <div className="flex flex-col gap-3 pt-5 lg:grid lg:grid-cols-form">
+              <Select.Content>
+                <Select.Item value="utc-3">
+                  <Select.ItemText>
+                    Pacific Standard Time (PST)
+                    <span className="text-sm text-zinc-500">UTC 08:00</span>
+                  </Select.ItemText>
+                </Select.Item>
+              </Select.Content>
+            </Select.Root>
+          </label>
+
+          <div className="grid gap-3 pt-5 lg:grid-cols-form">
             <label
               htmlFor="bio"
-              className="text-sm font-medium text-zinc-700 dark:text-zinc-300"
+              className="flex flex-col text-sm font-medium leading-relaxed text-zinc-700 dark:text-zinc-100"
             >
               Bio
-              <span className="mt-0.5 block text-sm font-normal text-zinc-500">
+              <span className="text-sm font-normal text-zinc-500 dark:text-zinc-400">
                 Write a short introduction.
               </span>
             </label>
-            <div className="space-y-3">
-              <div className="flex flex-col gap-3 lg:grid lg:grid-cols-2">
-                <Select placeholder="" defaultValue="normal">
-                  <SelectItem
-                    value="normal"
-                    defaultChecked
-                    text="Normal Text"
-                  />
-                  <SelectItem value="md" text="Markdown" />
-                </Select>
+            <div className="flex flex-col gap-3">
+              <div className="grid gap-3 lg:grid-cols-2">
+                <Select.Root defaultValue="normal">
+                  <Select.Trigger>
+                    <Select.Value />
+                  </Select.Trigger>
 
+                  <Select.Content>
+                    <Select.Item value="normal">
+                      <Select.ItemText>Normal text</Select.ItemText>
+                    </Select.Item>
+                    <Select.Item value="md">
+                      <Select.ItemText>Markdown</Select.ItemText>
+                    </Select.Item>
+                  </Select.Content>
+                </Select.Root>
                 <div className="flex items-center gap-1">
-                  <Button type="button" variant="ghost">
-                    <Bold className="h-4 w-4 text-zinc-500" strokeWidth={3} />
+                  <Button variant="ghost">
+                    <Bold className="h-4 w-4 text-zinc-400" strokeWidth={3} />
                   </Button>
-                  <Button type="button" variant="ghost">
-                    <Italic className="h-4 w-4 text-zinc-500" strokeWidth={3} />
+                  <Button variant="ghost">
+                    <Italic className="h-4 w-4 text-zinc-400" strokeWidth={3} />
                   </Button>
-                  <Button type="button" variant="ghost">
-                    <Link className="h-4 w-4 text-zinc-500" strokeWidth={3} />
+                  <Button variant="ghost">
+                    <Link className="h-4 w-4 text-zinc-400" strokeWidth={3} />
                   </Button>
-                  <Button type="button" variant="ghost">
-                    <List className="h-4 w-4 text-zinc-500" strokeWidth={3} />
+                  <Button variant="ghost">
+                    <List className="h-4 w-4 text-zinc-400" strokeWidth={3} />
                   </Button>
-                  <Button type="button" variant="ghost">
+                  <Button variant="ghost">
                     <ListOrdered
-                      className="h-4 w-4 text-zinc-500"
+                      className="h-4 w-4 text-zinc-400"
                       strokeWidth={3}
                     />
                   </Button>
                 </div>
               </div>
-
               <Textarea
+                name="bio"
                 id="bio"
                 defaultValue="I'm a Product Designer based in Melbourne, Australia. I specialise in UX/UI design, brand strategy, and Webflow development."
               />
